@@ -1,0 +1,59 @@
+﻿@model Employee2.ViewModels.EmployeeFormViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add an Employee</h2>
+<p class="alert alert-info">All fileds Are <strong>Required</strong></p>
+@using (Html.BeginForm("create", "Employees"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.SurName)
+        @Html.TextBoxFor(m => m.SurName, new { @class = "form-control" ,autofocus="autofocus"})
+        @Html.ValidationMessageFor(m => m.SurName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FatherName)
+        @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FatherName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MotherName)
+        @Html.TextBoxFor(m => m.MotherName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MotherName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Birthplace)
+        @Html.TextBoxFor(m => m.Birthplace, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Birthplace)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", placeholder = "eg 1 Jun 1999" })
+        @Html.ValidationMessageFor(m => m.Date)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Time)
+        @Html.TextBoxFor(m => m.Time, new { @class = "form-control", placeholder = "eg 20:00" })
+        @Html.ValidationMessageFor(m => m.Time)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Gender)
+        @Html.DropDownListFor(m => m.Gender, new SelectList(Model.Genders, "Id", "GenderName"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Gender)
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.BloodGroup)
+            @Html.DropDownListFor(m => m.BloodGroup, new SelectList(Model.BloodGroups, "Id", "Name"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.BloodGroup)
+        </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")    
+}

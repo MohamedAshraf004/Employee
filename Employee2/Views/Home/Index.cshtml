@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Employee2.Models.Employee>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<ul class="employees">
+    @foreach (var employee in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @employee.Birthdate.ToString("MMM")
+                </div>
+                <div class="day">
+                    @employee.Birthdate.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="employeeuser">
+                    @employee.EmployeeUser.Name
+                </span>
+                <span class="gender">
+                    @employee.Gender.GenderName
+                </span>
+                <span class="bloodgroup">
+                    @employee.BloodGroup.Name
+                </span>
+                @*<span class="surname">
+                    @employee.SurName.ToList()
+                </span>*@
+            </div>
+        </li>
+    }
+</ul>
